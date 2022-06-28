@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-const routers = [ // Array<RouteRecordRaw> 这个报错
+const routes = [ // Array<RouteRecordRaw> 这个报错
   {
     path: '/',
     name: 'home',
@@ -26,7 +26,7 @@ const routers = [ // Array<RouteRecordRaw> 这个报错
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: routers
+  routes
 })
 
 export default router

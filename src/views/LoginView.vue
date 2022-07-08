@@ -25,7 +25,7 @@ import { loginDataFn } from "@/api";
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
-  name: 'loginView',
+  name: 'LoginView',
   setup() {
     const data = reactive(new InitData())
     const router = useRouter()

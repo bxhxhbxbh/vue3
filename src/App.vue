@@ -4,7 +4,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import unitsFuction from './units'
 export default defineComponent({
+  setup() {
+    const { warterMark } = unitsFuction
+    const warterMarkFn = () => {
+      warterMark()
+    }
+    return {
+      warterMarkFn
+    }
+  }
 })
 </script>
 
@@ -16,6 +26,7 @@ export default defineComponent({
 html,body,#app {
   width: 100%;
   height: 100%;
+  background:  #cdcdcd;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

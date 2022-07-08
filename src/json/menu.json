@@ -1,4 +1,4 @@
-export default [
+[
     {
         "name": "111",
         "children": [
@@ -32,3 +32,5 @@ export default [
         ]
     },
 ]
+
+export default menuList

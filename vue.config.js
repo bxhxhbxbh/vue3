@@ -15,8 +15,11 @@ module.exports = defineConfig({
     .set("@", resolve('src'))
   },
   devServer: {
+    port: 8888,
     open: true,
-    host: '192.168.0.110',
+    https: false, // 使用https提供服务
+    host: '0.0.0.0',
+    // disableHostCheck: true,
     proxy: {
       "^/api.*$": {
         target: 'http://1.116.64.64:5004/api2',

@@ -86,7 +86,7 @@ export default defineComponent({
   box-shadow: 0.1px 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 .footer {
-  width: 100%;
+  width: 96%;
   height: 60px;
   line-height: 60px;
   background: white;

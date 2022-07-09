@@ -39,3 +39,32 @@ http://1.116.64.64:5004/api2/travel
 http://192.144.199.210:8080/editor/index.html?chart_id=7Ph0yZtNoJ1JhGd1
 
 ```
+
+### nginx配置
+```
+server {
+    listen       8080;
+    server_name  192.168.0.110;
+
+    #charset koi8-r;
+
+    #access_log  logs/host.access.log  main;
+
+    location / {
+        root   D:\ownProjectExercise\vue-练习\20220625\vue3\dist;
+        index  index.html index.htm;
+        try_files $uri/ @router;
+    }
+
+    location @router {
+        rewrite ^.*$ /index.html last;
+    }
+}
+
+检查配置修改是否成功
+nginx -t -c D:\nginx-1.22.0\nginx-1.22.0\conf\nginx.conf
+
+启动nginx
+start nginx
+
+```

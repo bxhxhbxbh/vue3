@@ -29,7 +29,7 @@ const routes: Array<RouteRecordRaw> = [ // Array<RouteRecordRaw> 这个偶尔报
           isShow: true,
           title: '列表',
         },
-        component: () => import('@/views/mainPage/FormView.vue'),
+        component: () => import('@/views/mainPage/TableView.vue'),
       },
       {
         path: '/3',
@@ -38,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [ // Array<RouteRecordRaw> 这个偶尔报
           isShow: true,
           title: '列表',
         },
-        component: () => import('@/views/mainPage/TableView.vue'),
+        component: () => import('@/views/mainPage/MapTravelView.vue'),
       },
       {
         path: '/4',
@@ -47,7 +47,7 @@ const routes: Array<RouteRecordRaw> = [ // Array<RouteRecordRaw> 这个偶尔报
           isShow: true,
           title: '列表',
         },
-        component: () => import('@/views/mainPage/TableView.vue'),
+        component: () => import('@/views/mainPage/MapScoreView.vue'),
       }
     ]
   }
@@ -58,25 +58,21 @@ const router = createRouter({
   routes,
 })
 
+const pathList = ['/home', '/', '/1', '/2', '/3', '/4'] // 路由白名单
+
 router.beforeEach((to, from, next) => {
   const token:string | null = localStorage.getItem('token')
   if(!token && to.path !== '/') {
-    // console.log(1321)
     return '/'
   }else if(to.path !== '/' && token){
-    // console.log(4546546)
     // 动态添加路由 调用路由接口
     // const routerData:any = await getRouter()
-    routes.map(item => {
-      if(item.children)
-      item.children.map(tool => {
-        if(to.path === tool.path) {
-          next()
-        } else {
-          next({path: '/'})
-        }
-      })
-    })
+    if(pathList.indexOf(to.path) > 0) {
+      return next()
+    } else {
+      localStorage.removeItem('token')
+      return next({path: '/'})
+    }
   }
   next()
 })

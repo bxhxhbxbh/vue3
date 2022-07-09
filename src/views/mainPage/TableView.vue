@@ -8,9 +8,6 @@ import TablePage from '@/components/Table.vue'
 export default defineComponent({
   name: 'TableView',
   components: { TablePage },
-  props: {
-    msg: String,
-  },
 });
 </script>
 

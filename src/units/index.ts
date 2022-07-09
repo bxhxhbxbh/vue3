@@ -22,8 +22,8 @@ const unitsFuction = {
         const canvasDiv = document.getElementsByClassName('canvasDiv')[0];
         if (canvasDiv) {
             canvasDiv.remove()
-        }
-        const textBecomeImg = (text: string, fontsize: number, fontcolor: string | CanvasGradient | CanvasPattern | undefined) => {
+        } 
+        const textBecomeImg = (text: string, fontsize: number, fontcolor: string) => {
             const canvas = document.createElement('canvas');
             let $buHeight = 0;
             if(fontsize <= 32) {
@@ -39,30 +39,30 @@ const unitsFuction = {
             }
             canvas.height = fontsize + $buHeight;
             const context: any = canvas.getContext('2d');
-            context?.clearRect(0, 0, canvas.width * 2, canvas.height);
+            context.clearRect(0, 0, canvas.width * 2, canvas.height);
             context.textAlign = 'center';
-            canvas.width = 450;
-            canvas.height = 200;
+            canvas.width = 550;
+            canvas.height = 180;
             context.fillStyle = fontcolor;
             context.font = fontsize + 'px Arial';
             context.textBaseline = 'middle';
-            const canvasWidth = canvas.width / 99;
-            context?.fillText(text, canvasWidth, fontsize / 2);
+            const canvasWidth = canvas.width / 100;
+            context.fillText(text, canvasWidth, fontsize / 2);
             const dataUrl = canvas.toDataURL('image/png')
             return dataUrl
         }
-        const name_text = getDate() + '某某';
+        const name_text = unitsFuction.getDate() + ' 胡晓斌';
         const shuitinDiv = document.createElement('div');
         shuitinDiv.className = 'canvasDiv';
         const divStyle = shuitinDiv.style;
-        divStyle.position = 'absolute';
-        divStyle.left = '0';
-        divStyle.top = '-60%';
-        divStyle.width = '120%';
-        divStyle.height = '200%';
-        divStyle.opacity = '0.15';
-        divStyle.background = `url(${textBecomeImg(name_text, 32, 'gray')})`;
-        divStyle.zIndex = '1000';
+        divStyle.position = 'fixed';
+        divStyle.left = '-50px';
+        divStyle.top = '-200px';
+        divStyle.width = 'calc(150vw - 100px)';
+        divStyle.height = 'calc(150vh - 100px)';
+        divStyle.opacity = '0.2';
+        divStyle.background = `url(${textBecomeImg(name_text, 24, 'gray')})`;
+        divStyle.zIndex = '1000000000000';
         divStyle.transform = 'rotate(-30deg)';
         divStyle.pointerEvents = 'none';
         document.body.appendChild(shuitinDiv);

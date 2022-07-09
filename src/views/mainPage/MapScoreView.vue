@@ -64,7 +64,7 @@ export default defineComponent({
                   show: true,
                   textStyle: {
                     color: '#1de9b6',
-                    fontSize: '.4rem'
+                    fontSize: '.8rem'
                   }
                 },
                 emphasis: {

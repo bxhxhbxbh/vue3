@@ -1,5 +1,5 @@
 import { open, close } from '@/units/nprogress'
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [ // Array<RouteRecordRaw> 这个偶尔报错
   {
@@ -54,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [ // Array<RouteRecordRaw> 这个偶尔报
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(), //createWebHistory不带#号，createWebHashHistory()带#号
   routes,
 })
 

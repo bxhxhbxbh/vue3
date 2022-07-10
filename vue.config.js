@@ -18,7 +18,7 @@ module.exports = defineConfig({
     port: 8888,
     open: true,
     https: false, // 使用https提供服务
-    host: '192.168.0.110',
+    host: 'localhost',
     hot: true,
     // disableHostCheck: true,
     proxy: {

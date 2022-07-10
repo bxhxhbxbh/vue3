@@ -1,4 +1,4 @@
-import { nextTick } from 'vue'
+import { open, close } from '@/units/nprogress'
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [ // Array<RouteRecordRaw> 这个偶尔报错
@@ -75,6 +75,14 @@ router.beforeEach((to, from, next) => {
     }
   }
   next()
+})
+
+router.beforeEach((pre, next) => {
+  open()
+})
+ 
+router.afterEach(() => {
+  close()
 })
 
 export default router

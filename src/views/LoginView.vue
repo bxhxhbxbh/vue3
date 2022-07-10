@@ -43,13 +43,26 @@ export default defineComponent({
       loginFormRef.validate((valid: Boolean) => {
         if(valid) {
           loginDataFn(data.loginForm).then(res => {
+            console.log(res)
+              if(res.status === 200) {
+                ElMessage({
+                message: '登陆成功',
+                type: 'success',
+              })
+              console.log(res, 'ooooo')
+              localStorage.setItem("token", res.data.token)
+              router.push('/home')
+            } else {
+              ElMessage({
+                message: '后台错误',
+                type: 'success',
+              })
+            }
+          }).catch(err => {
             ElMessage({
-              message: '登陆成功',
+              message: '服务错误',
               type: 'success',
             })
-            console.log(res, 'ooooo')
-            localStorage.setItem("token", res.data.token)
-            router.push('/home')
           })
         } else {
           ElMessage.error('验证失败')

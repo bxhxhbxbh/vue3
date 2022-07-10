@@ -18,7 +18,8 @@ module.exports = defineConfig({
     port: 8888,
     open: true,
     https: false, // 使用https提供服务
-    host: '0.0.0.0',
+    host: '192.168.0.110',
+    hot: true,
     // disableHostCheck: true,
     proxy: {
       "^/api.*$": {

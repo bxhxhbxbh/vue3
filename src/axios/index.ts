@@ -1,6 +1,6 @@
 import axios from "axios"
 import { ElMessage } from 'element-plus'
-
+import { open, close } from '@/units/nprogress'
 const $http = axios.create({
     baseURL: "/api",
     timeout: 2000,
@@ -17,6 +17,7 @@ enum msgs {
 }
 
 $http.interceptors.request.use(config => {
+    open()
     config.headers = config.headers || {}
     if(localStorage.getItem('token')) {
         config.headers.token = localStorage.getItem('token') || ''
@@ -25,6 +26,7 @@ $http.interceptors.request.use(config => {
 })
 
 $http.interceptors.response.use(res => {
+    close()
     const code: number = res.data.status
     const resp: string = res.data.token? res : res.data
     if(code !== 200) {

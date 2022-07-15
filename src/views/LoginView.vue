@@ -1,15 +1,20 @@
 <template>
   <div class="login-page">
-    <el-form ref="loginFormRef" :model="loginForm" status-icon :rules="rules" label-width="70px" class="loginForm">
-      <h2>后台管理系统</h2>
-      <el-form-item label="账号" prop="userName">
+    <el-form ref="loginFormRef" :model="loginForm" status-icon :rules="rules" label-width="125px" class="loginForm">
+      <h2>{{$t('common.name')}}</h2>
+      <el-form-item :label="$t('common.switch')">
+        <div class="laguage" @click="changeLanguage">
+          <span class="active">{{language.curLanguage === 'en-us'? $t('common.switchEn') : $t('common.switchZh')}}</span>
+        </div>
+      </el-form-item>
+      <el-form-item :label="$t('common.account')" prop="userName">
         <el-input v-model="loginForm.userName" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="密码" prop="passWord">
+      <el-form-item :label="$t('common.password')" prop="passWord">
         <el-input v-model="loginForm.passWord" type="password" autocomplete="off" />
       </el-form-item>
       <el-form-item>
-        <el-button class="sub-btu" type="primary" @click="submitForm(loginFormRef)">登录</el-button>
+        <el-button class="sub-btu" type="primary" @click="submitForm(loginFormRef)">{{$t('common.signIn')}}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -24,11 +29,14 @@ import { loginDataFn } from "@/api";
 
 import { useRouter } from 'vue-router';
 
+import { useI18n } from 'vue-i18n'
+
 export default defineComponent({
   name: 'LoginView',
   setup() {
     const data = reactive(new InitData())
     const router = useRouter()
+    const { locale } = useI18n()
     const rules = {
       userName: [
         { required: true, message: '请输入账号', trigger: 'blur' },
@@ -69,10 +77,16 @@ export default defineComponent({
         }
       })
     }
+    const changeLanguage = () => {
+      const localeStr: any = locale
+      data.language.curLanguage = data.language.curLanguage === 'zh-cn' ? 'en-us' : 'zh-cn'
+      localeStr.value = data.language.curLanguage
+    }
     return {
       ...toRefs(data),
       rules,
-      submitForm
+      submitForm,
+      changeLanguage
     }
   },
 });
@@ -90,7 +104,7 @@ export default defineComponent({
     margin-bottom: 20px;
   }
   .loginForm {
-    width: 400px;
+    width: 450px;
     padding: 20px;
     background: #fff;
     border-radius: 20px;
@@ -99,5 +113,18 @@ export default defineComponent({
       width: 100%;
     }
   }
+  .laguage {
+    font-weight: bold;
+    .active {
+      color: rgb(11, 154, 237)
+    }
+  }
+}
+
+</style>
+<style>
+.el-form .el-form-item .el-form-item__label {
+  line-height: 16px !important;
+  align-items: center !important;
 }
 </style>
